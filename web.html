@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff1e3c;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome to My Interactive Web</h1>
+        <button onclick="changeBackground()">Change Background</button>
+    </div>
+
+    <script>
+        function changeBackground() {
+            const colors = ['#ff7eb3', '#ff758c', '#7b2ff7', '#2ff7a1', '#f7d02f'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = `linear-gradient(135deg, ${randomColor}, ${randomColor}80)`;
+        }
+
+        function createFloatingCircles() {
+            for (let i = 0; i < 20; i++) {
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+                const size = Math.random() * 100 + 20;
+                circle.style.width = `${size}px`;
+                circle.style.height = `${size}px`;
+                circle.style.top = `${Math.random() * 100}vh`;
+                circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                document.body.appendChild(circle);
+            }
+        }
+
+        createFloatingCircles();
+    </script>
+</body>
+</html>
